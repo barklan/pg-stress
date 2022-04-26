@@ -6,4 +6,5 @@ uvicorn
 asyncpg
 black
 mypy
+Faker
 sqlalchemy2-stubs
