@@ -8,7 +8,7 @@ import (
 
 func main() {
 	client := http.Client{
-		Timeout: 1 * time.Second,
+		Timeout: 20 * time.Second,
 	}
 	if _, err := client.Get("http://localhost:8000/create"); err != nil {
 		log.Fatalf("%v\n", err)

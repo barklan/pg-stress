@@ -8,3 +8,4 @@ black
 mypy
 Faker
 sqlalchemy2-stubs
+gunicorn

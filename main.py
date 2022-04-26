@@ -1,8 +1,10 @@
 import sqlalchemy
+import asyncio
 from sqlalchemy import orm
 import sqlalchemy as sa
 from collections import abc
 import faker
+import time
 
 import fastapi as fa
 
@@ -20,13 +22,14 @@ def get_db() -> abc.Generator[orm.Session, None, None]:
         db.rollback()
         raise
     finally:
-        db.close()
+        pass
+        # db.close()
 
 
 app = fa.FastAPI()
 
 @app.get("/create")
-def create(
+async def create(
     db: orm.Session = fa.Depends(get_db),
 ):
     db.execute(sa.text("""
@@ -36,15 +39,16 @@ def create(
     """))
 
 @app.get("/select")
-def select(
+async def select(
     db: orm.Session = fa.Depends(get_db),
 ):
     db.execute(sa.text("select * from book;"))
     return {"status": "ok"}
 
 @app.get("/insert")
-def insert(
+async def insert(
     db: orm.Session = fa.Depends(get_db),
 ):
     db.execute(sa.text("insert into book (title) values ('{}')".format(fake.name())))
+
     return {"status": "ok"}
