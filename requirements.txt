@@ -1,0 +1,9 @@
+fastapi
+psycopg2-binary
+pydantic
+sqlalchemy[mypy]
+uvicorn
+asyncpg
+black
+mypy
+sqlalchemy2-stubs
